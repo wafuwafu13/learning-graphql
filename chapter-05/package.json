@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"start": "nodemon -e js,json,graphql",
+    "start": "nodemon -e js,json,graphql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "wafuwafu13 <mariobaske@i.softbank.jp> (https://wafuwafu13.hateblo.jp/entry/wafuwafuportfolio)",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.25.2",
+    "apollo-server-express": "^2.25.2",
+    "express": "^4.17.1",
     "graphql": "^15.5.1",
+    "graphql-playground-middleware-express": "^1.7.22",
     "nodemon": "^2.0.9"
   }
 }
