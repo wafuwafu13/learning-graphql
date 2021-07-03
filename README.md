@@ -2,6 +2,8 @@
 https://www.oreilly.co.jp/books/9784873118932/  
 
 
+#### MongoDB
+
 ```zsh
 $ brew tap mongodb/brew
 $ brew install mongodb-community
@@ -21,3 +23,7 @@ config
 local
 photo-share-api-db 
 ```
+
+#### githubAuth
+
+https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps#2-users-are-redirected-back-to-your-site-by-github
