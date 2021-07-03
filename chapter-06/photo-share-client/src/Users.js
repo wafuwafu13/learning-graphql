@@ -1,6 +1,17 @@
 import React from "react";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { ROOT_QUERY } from "./App";
+import { gql } from "apollo-boost";
+
+const ADD_FAKE_USERS_MUTATION = gql`
+  mutation addFakeUsers($count: Int!) {
+    addFakeUsers(count: $count) {
+      githubLogin
+      name
+      avatar
+    }
+  }
+`;
 
 const Users = () => {
   return (
@@ -23,7 +34,10 @@ const Users = () => {
 const UserList = ({ count, users, refetchUsers }) => (
   <div>
     <p>{count} Users</p>
-	<button onClick={() => refetchUsers()}>Refetch</button>
+    <button onClick={() => refetchUsers()}>Refetch</button>
+    <Mutation mutation={ADD_FAKE_USERS_MUTATION} variables={{ count: 1 }}>
+      {(addFakeUsers) => <button onClick={addFakeUsers}>Add Fake User</button>}
+    </Mutation>
     <ul>
       {users.map((user) => (
         <UserListItem
