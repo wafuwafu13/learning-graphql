@@ -1,0 +1,12 @@
+{
+  "name": "chapter-06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "wafuwafu13 <mariobaske@i.softbank.jp> (https://wafuwafu13.hateblo.jp/entry/wafuwafuportfolio)",
+  "license": "ISC"
+}
