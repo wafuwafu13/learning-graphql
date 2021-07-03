@@ -1,7 +1,7 @@
 type User {
   githubLogin: ID!
   name: String
-  avater: String
+  avatar: String
   postedPhotos: [Photo!]!
   inPhotos: [Photo!]!
 }
