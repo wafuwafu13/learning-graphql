@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "wafuwafu13 <mariobaske@i.softbank.jp> (https://wafuwafu13.hateblo.jp/entry/wafuwafuportfolio)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.4.9",
+    "graphql": "^14.7.0",
+    "react-apollo": "^3.1.5"
+  }
 }
