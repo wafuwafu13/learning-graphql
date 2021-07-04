@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Mutation } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { ROOT_QUERY } from "./App";
 import { gql } from "apollo-boost";
 
@@ -12,20 +12,41 @@ const GITHUB_AUTH_MUTATION = gql`
   }
 `;
 
+const CurrentUser = ({ name, avatar, logout }) => (
+  <div>
+    <img src={avatar} width={48} height={48} alt="" />
+    <h1>{name}</h1>
+    <button onClick={logout}>logout</button>
+  </div>
+);
+
+const Me = ({ logout, requestCode, signingIn }) => (
+  <Query query={ROOT_QUERY}>
+    {({ loading, data }) => loading ?
+        <p>loading... </p> : 
+		data.me ? 
+          <CurrentUser {...data.me} logout={logout} /> : 
+          <button onClick={requestCode} disabled={signingIn}>
+            Sign In with Github
+          </button>
+    }
+  </Query>
+);
+
 class AuthorizedUser extends Component {
   state = { signingIn: false };
 
   authorizationComplete = (cache, { data }) => {
-	localStorage.setItem('token', data.githubAuth.token)
-	this.props.history.replace('/')
-	this.setState({ signingIn: false })
-  }
+    localStorage.setItem("token", data.githubAuth.token);
+    this.props.history.replace("/");
+    this.setState({ signingIn: false });
+  };
 
   componentDidMount() {
     if (window.location.search.match(/code=/)) {
       this.setState({ signingIn: true });
       const code = window.location.search.replace("?code=", "");
-	  this.githubAuthMutation({ variables: { code } })
+      this.githubAuthMutation({ variables: { code } });
     }
   }
 
@@ -44,9 +65,11 @@ class AuthorizedUser extends Component {
         {(mutation) => {
           this.githubAuthMutation = mutation;
           return (
-            <button onClick={this.requestCode} disabled={this.state.signingIn}>
-              Sign In with GitHub
-            </button>
+            <Me
+              signingIn={this.state.signingIn}
+              requestCode={this.requestCode}
+              logout={() => localStorage.removeItem("token")}
+            />
           );
         }}
       </Mutation>
