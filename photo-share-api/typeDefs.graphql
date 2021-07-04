@@ -32,10 +32,13 @@ type Photo {
   created: DateTime!
 }
 
+scalar Upload
+
 input PostPhotoInput {
   name: String!
   category: PhotoCategory = PORTRAIT
   description: String
+  file: Upload!
 }
 
 type Query {
